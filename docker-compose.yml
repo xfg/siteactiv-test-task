@@ -1,0 +1,31 @@
+version: '3'
+services:
+  web:
+    build: .
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ".:/var/www/html"
+    ports:
+      - "4280:80"
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: primenum
+    command: --disable-partition-engine-check
+    volumes:
+      - "mysql:/var/lib/mysql"
+      - ".:/docker-entrypoint-initdb.d/:ro"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "5280:8080"
+volumes:
+  mysql:

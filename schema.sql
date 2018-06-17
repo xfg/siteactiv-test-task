@@ -1,0 +1,5 @@
+CREATE TABLE prime_numbers (
+  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  input INT(11) NOT NULL,
+  output JSON NOT NULL
+) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_unicode_ci;
